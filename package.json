@@ -1,12 +1,21 @@
 {
-  "name": "nextjs-boilerplate",
+  "name": "nextjs-ts-boilerplate",
   "version": "0.1.0",
   "private": true,
+  "keywords": [
+    "nextjs",
+    "starter",
+    "typescript"
+  ],
   "scripts": {
-    "dev": "next dev",
+    "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "type-check": "tsc --noEmit",
+    "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
+    "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
+    "postinstall": "husky install",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@types/node": "20.1.4",
@@ -18,5 +27,14 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.0.4"
+  },
+  "lint-staged": {
+    "./src/**/*.{ts,js,jsx,tsx}": [
+      "eslint --ignore-path .gitignore --fix",
+      "prettier --ignore-path .gitignore --write"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^8.0.0"
   }
 }
